@@ -59,6 +59,30 @@ const submitBtn = document.getElementById("submit");
 const loadingProgress = document.getElementById("loading-bar-progress");
 
 
+const booleanQuestionData = [
+  {
+    order: 1,
+    questionText: "Is the sky blue?",
+    correctAnswer: true
+  },
+  {
+    order: 2,
+    questionText: "Is water wet?",
+    correctAnswer: true
+  },
+  {
+    order: 3,
+    questionText: "Is the Earth flat?",
+    correctAnswer: false
+  },
+  {
+    order: 4,
+    questionText: "Is the Earth round?",
+    correctAnswer: true
+  }
+];
+
+
 const quizData = [
   {
     question: "Which language runs in a web browsers?",
