@@ -1,5 +1,5 @@
  
-const quizTemplate = `
+const singleSelectQuizTemplate = `
 <ul>
 <li>
   <input type="radio" name="answer" id="a" class="answer">
@@ -19,11 +19,34 @@ const quizTemplate = `
 </li>
 </ul>
 `; 
+
+const multiSelectQuizTemplate = `
+<ul>
+<li>
+  <input type="checkbox" name="answer" id="a" class="answer">
+  <label for="a" id="a_text">Answer</label>
+</li>
+<li>
+  <input type="checkbox" name="answer" id="b" class="answer">
+  <label for="b" id="b_text">Answer</label>
+</li>
+<li>
+  <input type="checkbox" name="answer" id="c" class="answer">
+  <label for="c" id="c_text">Answer</label>
+</li>
+<li>
+  <input type="checkbox" name="answer" id="d" class="answer">
+  <label for="d" id="d_text">Answer</label>
+</li>
+</ul>
+`;
+
+
 debugger
 const quiz = document.getElementById("quiz");
 const quizBody = document.getElementById("quizBody");
 
-quizBody.innerHTML = quizTemplate;
+quizBody.innerHTML = multiSelectQuizTemplate;
 
 
 const answerEls = document.querySelectorAll(".answer");
