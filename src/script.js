@@ -41,6 +41,47 @@ const multiSelectQuizTemplate = `
 </ul>
 `;
 
+const booleanQuestionTemplate = `
+<ul>
+
+<li>
+  <div class="row" style="display: inline-block;">
+  <div class="col-8">
+    <p>Is the sky blue?</p>
+  </div>
+  <div class="col-2">
+    <input type="radio" name="answer_a" id="a_true" class="answer" value="true">
+    <label for="a_true" id="a_true_text">Yes</label>
+  </div>
+  <div class="col-2">
+    <input type="radio" name="answer_a" id="a_false" class="answer" value="false">
+    <label for="a_false" id="a_false_text">No</label>
+  </div>
+  </div>
+</li>
+<!-- 
+
+<li style="display: inline-block;">
+  <input type="radio" name="answer_b" id="b_true" class="answer" value="true">
+  <label for="b_true" id="b_true_text">Yes</label>
+  <input type="radio" name="answer_b" id="b_false" class="answer" value="false">
+  <label for="b_false" id="b_false_text">No</label>
+</li>
+<li style="display: inline-block;">
+  <input type="radio" name="answer_c" id="c_true" class="answer" value="true">
+  <label for="c_true" id="c_true_text">Yes</label>
+  <input type="radio" name="answer_c" id="c_false" class="answer" value="false">
+  <label for="c_false" id="c_false_text">No</label>
+</li>
+<li style="display: inline-block;">
+  <input type="radio" name="answer_d" id="d_true" class="answer" value="true">
+  <label for="d_true" id="d_true_text">Yes</label>
+  <input type="radio" name="answer_d" id="d_false" class="answer" value="false">
+  <label for="d_false" id="d_false_text">No</label>
+</li> -->
+</ul>
+`;
+
 
 debugger
 const quiz = document.getElementById("quiz");
