@@ -19,9 +19,13 @@ const quizTemplate = `
 </li>
 </ul>
 `; 
-
+debugger
 const quiz = document.getElementById("quiz");
 const quizBody = document.getElementById("quizBody");
+
+quizBody.innerHTML = quizTemplate;
+
+
 const answerEls = document.querySelectorAll(".answer");
 const questionEl = document.getElementById("question");
 const a_text = document.getElementById("a_text");
@@ -31,7 +35,6 @@ const d_text = document.getElementById("d_text");
 const submitBtn = document.getElementById("submit");
 const loadingProgress = document.getElementById("loading-bar-progress");
 
-quizBody.innerHTML = quizTemplate;
 
 const quizData = [
   {
