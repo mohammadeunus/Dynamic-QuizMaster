@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - 46 Quiz App</title>
+  <title>Dynamic Quiz App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
-  <!--=============== FONT AWESOME ===============-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-  
-  
-<!-- Quiz: index.html -->
-<div class="quiz-container" id="quiz">
-  <h2 id="question">Question</h2>
-  <div class="loading-bar">
-    <div class="loading-bar-progress" id="loading-bar-progress"></div>
+  <div class="quiz-container" id="quiz">
+    <div id="quiz-selection">
+      <h2>Select Quiz Type</h2>
+      <button class="quiz-type-btn" data-type="single">Single Select Quiz</button>
+      <button class="quiz-type-btn" data-type="multi">Multi Select Quiz</button>
+      <button class="quiz-type-btn" data-type="boolean">Boolean Quiz</button>
+    </div>
+    <div id="quiz-content" style="display: none;">
+      <h2 id="question">Question</h2>
+      <div class="loading-bar">
+        <div class="loading-bar-progress" id="loading-bar-progress"></div>
+      </div>
+      <div id="quizBody"></div>
+      <button id="previous" style="display: none;"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+      <button id="submit">Next <i class="fa-solid fa-chevron-right"></i></button>
+    </div>
   </div>
-  
-  <div id="quizBody"></div>
-
-  <button id="submit">Next <i class="fa-solid fa-chevron-right"></i></button>
-  <button id="Previous"><i class="fa-solid fa-chevron-left"></i> Previous</button>
-</div>
-<!-- Quiz -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="script.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
