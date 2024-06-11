@@ -82,6 +82,10 @@ const booleanQuestionTemplate = `
 </ul>
 `;
 
+let currentQuiz = 0;
+let score = 0;
+
+
 
 debugger
 const quiz = document.getElementById("quiz");
@@ -160,8 +164,11 @@ const quizData = [
 ];
 
 
-let currentQuiz = 0;
-let score = 0;
+const resultTemplate = `
+      <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+
+      <button onclick="location.reload()">Reload <i class="fa-solid fa-arrows-rotate"></i></button>
+  `;
 
 loadQuiz();
 
