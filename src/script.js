@@ -1,3 +1,5 @@
+"use strict";
+
 const singleSelectQuizTemplate = `
 <ul>
   <li>
@@ -51,6 +53,95 @@ const booleanQuestionTemplate = `
 </ul>
 `;
 
+const quizData = {
+  single: [
+    {
+      question: "Which language runs in a web browsers?",
+      a: "Java",
+      b: "C",
+      c: "Python",
+      d: "JavaScript",
+      correct: "d"
+    },
+    {
+      question: "What does CSS stand for?",
+      a: "Central Style Sheets",
+      b: "Cascading Style Sheets",
+      c: "Cascading Simple Sheets",
+      d: "Cars SUVs Sailboats",
+      correct: "b"
+    },
+    {
+      question: "What does HTML stand for?",
+      a: "Hypertext Markup Language",
+      b: "Hypertext Markdown Language",
+      c: "Hyperloop Machine Language",
+      d: "Helicopters Terminals Motorboats Lamborghinis",
+      correct: "a"
+    },
+    {
+      question: "What year was JavaScript launched?",
+      a: "1996",
+      b: "1995",
+      c: "1994",
+      d: "none of the above",
+      correct: "b"
+    }
+  ],
+  multi: [
+    {
+      question: "Select the programming languages.",
+      a: "JavaScript",
+      b: "BananaScript",
+      c: "Python",
+      d: "Ruby",
+      correct: ["a", "c", "d"]
+    },
+    {
+      question: "Select the CSS frameworks.",
+      a: "Bootstrap",
+      b: "Foundation",
+      c: "Angular",
+      d: "Bulma",
+      correct: ["a", "b", "d"]
+    },
+    {
+      question: "Select the HTML tags.",
+      a: "<div>",
+      b: "<banana>",
+      c: "<span>",
+      d: "<p>",
+      correct: ["a", "c", "d"]
+    },
+    {
+      question: "Select the JavaScript libraries.",
+      a: "React",
+      b: "Vue",
+      c: "Angular",
+      d: "JQuery",
+      correct: ["a", "b", "d"]
+    }
+  ],
+  boolean: [
+    {
+      question: "Is the sky blue?",
+      correct: true
+    },
+    {
+      question: "Is water wet?",
+      correct: true
+    },
+    {
+      question: "Is the Earth flat?",
+      correct: false
+    },
+    {
+      question: "Is the Earth round?",
+      correct: true
+    }
+  ]
+};
+
 const quiz = document.getElementById("quiz");
 const quizSelection = document.getElementById("quiz-selection");
 const quizContent = document.getElementById("quiz-content");
@@ -63,96 +154,6 @@ const loadingProgress = document.getElementById("loading-bar-progress");
 let currentQuiz = 0;
 let score = 0;
 let selectedQuizType = '';
-let quizData = [];
-
-const singleSelectQuizData = [
-  {
-    question: "Which language runs in a web browsers?",
-    a: "Java",
-    b: "C",
-    c: "Python",
-    d: "JavaScript",
-    correct: "d"
-  },
-  {
-    question: "What does CSS stand for?",
-    a: "Central Style Sheets",
-    b: "Cascading Style Sheets",
-    c: "Cascading Simple Sheets",
-    d: "Cars SUVs Sailboats",
-    correct: "b"
-  },
-  {
-    question: "What does HTML stand for?",
-    a: "Hypertext Markup Language",
-    b: "Hypertext Markdown Language",
-    c: "Hyperloop Machine Language",
-    d: "Helicopters Terminals Motorboats Lamborghinis",
-    correct: "a"
-  },
-  {
-    question: "What year was JavaScript launched?",
-    a: "1996",
-    b: "1995",
-    c: "1994",
-    d: "none of the above",
-    correct: "b"
-  }
-];
-
-const multiSelectQuizData = [
-  {
-    question: "Select the programming languages.",
-    a: "JavaScript",
-    b: "BananaScript",
-    c: "Python",
-    d: "Ruby",
-    correct: ["a", "c", "d"]
-  },
-  {
-    question: "Select the CSS frameworks.",
-    a: "Bootstrap",
-    b: "Foundation",
-    c: "Angular",
-    d: "Bulma",
-    correct: ["a", "b", "d"]
-  },
-  {
-    question: "Select the HTML tags.",
-    a: "<div>",
-    b: "<banana>",
-    c: "<span>",
-    d: "<p>",
-    correct: ["a", "c", "d"]
-  },
-  {
-    question: "Select the JavaScript libraries.",
-    a: "React",
-    b: "Vue",
-    c: "Angular",
-    d: "JQuery",
-    correct: ["a", "b", "d"]
-  }
-];
-
-const booleanQuizData = [
-  {
-    question: "Is the sky blue?",
-    correct: true
-  },
-  {
-    question: "Is water wet?",
-    correct: true
-  },
-  {
-    question: "Is the Earth flat?",
-    correct: false
-  },
-  {
-    question: "Is the Earth round?",
-    correct: true
-  }
-];
 
 document.querySelectorAll(".quiz-type-btn").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -166,25 +167,14 @@ function startQuiz() {
   quizContent.style.display = "block";
   previousBtn.style.display = "none";
   submitBtn.innerText = "Next";
-
-  switch (selectedQuizType) {
-    case "single":
-      quizData = singleSelectQuizData;
-      break;
-    case "multi":
-      quizData = multiSelectQuizData;
-      break;
-    case "boolean":
-      quizData = booleanQuizData;
-      break;
-  }
-
+  currentQuiz = 0;
+  score = 0;
   loadQuiz();
 }
 
 function loadQuiz() {
   deselectAnswers();
-  const currentQuizData = quizData[currentQuiz];
+  const currentQuizData = quizData[selectedQuizType][currentQuiz];
 
   questionEl.innerText = currentQuizData.question;
   switch (selectedQuizType) {
@@ -204,61 +194,46 @@ function loadQuiz() {
       break;
     case "boolean":
       quizBody.innerHTML = booleanQuestionTemplate;
-      document.getElementById("a_true_text").innerText = "Yes";
-      document.getElementById("a_false_text").innerText = "No";
       break;
   }
 }
 
 function deselectAnswers() {
-  const answerEls = document.querySelectorAll(".answer");
-  answerEls.forEach(answerEl => answerEl.checked = false);
+  document.querySelectorAll(".answer").forEach(answerEl => answerEl.checked = false);
 }
 
 function getSelected() {
-  const answerEls = document.querySelectorAll(".answer");
-  let answers = [];
-
-  answerEls.forEach(answerEl => {
-    if (answerEl.checked) {
-      answers.push(answerEl.id);
-    }
-  });
-
-  return answers;
+  return [...document.querySelectorAll(".answer")]
+    .filter(answerEl => answerEl.checked)
+    .map(answerEl => answerEl.id);
 }
 
 submitBtn.addEventListener("click", () => {
   const answers = getSelected();
-
   if (answers.length) {
-    const currentQuizData = quizData[currentQuiz];
-    if (selectedQuizType === "single") {
-      if (answers[0] === currentQuizData.correct) {
-        score++;
-      }
-    } else if (selectedQuizType === "multi") {
-      if (JSON.stringify(answers.sort()) === JSON.stringify(currentQuizData.correct.sort())) {
-        score++;
-      }
-    } else if (selectedQuizType === "boolean") {
-      const correctAnswer = currentQuizData.correct.toString();
-      if (answers[0] === `a_${correctAnswer}`) {
-        score++;
-      }
+    const currentQuizData = quizData[selectedQuizType][currentQuiz];
+    if (selectedQuizType === "single" && answers[0] === currentQuizData.correct) {
+      score++;
+    } else if (selectedQuizType === "multi" && JSON.stringify(answers.sort()) === JSON.stringify(currentQuizData.correct.sort())) {
+      score++;
+    } else if (selectedQuizType === "boolean" && answers[0] === `a_${currentQuizData.correct}`) {
+      score++;
     }
 
     currentQuiz++;
-    loadingProgress.style.width = `${(currentQuiz * 100) / quizData.length}%`;
+    loadingProgress.style.width = `${(currentQuiz * 100) / quizData[selectedQuizType].length}%`;
 
-    if (currentQuiz < quizData.length) {
+    if (currentQuiz < quizData[selectedQuizType].length) {
       loadQuiz();
     } else {
       quiz.innerHTML = `
-        <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+        <h2>You answered ${score}/${quizData[selectedQuizType].length} questions correctly</h2>
         <button onclick="location.reload()">Reload <i class="fa-solid fa-arrows-rotate"></i></button>
       `;
     }
+
+    previousBtn.style.display = currentQuiz > 0 ? "block" : "none";
+    submitBtn.innerText = currentQuiz === quizData[selectedQuizType].length ? "Finish" : "Next";
   }
 });
 
