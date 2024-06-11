@@ -215,11 +215,7 @@ submitBtn.addEventListener("click", () => {
     if (currentQuiz < quizData.length) {
       loadQuiz();
     } else {
-      quiz.innerHTML = `
-                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-
-                <button onclick="location.reload()">Reload <i class="fa-solid fa-arrows-rotate"></i></button>
-            `;
+      quiz.innerHTML = resultTemplate
     }
   }
 });
