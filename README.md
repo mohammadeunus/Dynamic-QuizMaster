@@ -3,9 +3,8 @@
 Welcome to the WafiCommerce project! This README file will guide you through the essential rules and standards to maintain consistency and quality in our development process.
 
 
-## Common Utilities
-> [!let's not reinvent the wheel]
-> Utilze these method to make your life easy :)
+> [!IMPORTANT]
+> Ladybird is in a pre-alpha state, and only suitable for use by developers
 >
 
 ### CodeGenerator
